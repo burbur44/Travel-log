@@ -9,6 +9,7 @@ const requiredString ={
     type: String,
     required: true
 }
+
   var LogEntrySchema = new Schema({
     title:requiredString,
 
@@ -30,7 +31,7 @@ const requiredString ={
         min: -180,
         max: 180,
     },
-    visit_date:{
+    visitDate:{
         required: true,
         type: Date,
     },
@@ -52,6 +53,6 @@ const requiredString ={
     }
   });
 
-  const LogEntry = mongose.model('logEntry', logEntrySchema);
+  const LogEntry = mongoose.model('logEntry', LogEntrySchema);
 
   module.exports = LogEntry;

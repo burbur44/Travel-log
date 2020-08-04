@@ -9,6 +9,8 @@ require('dotenv').config();
 const middlewares = require('./middlewares');
 const logs  = require('./api/logs');
 
+const app = express();
+
 
 mongoose.connect('mongodb://localhost:27017/travel-log', {
     useNewUrlParser: true,
@@ -16,7 +18,6 @@ mongoose.connect('mongodb://localhost:27017/travel-log', {
 });
 
 
-const app = express();
 app.use(morgan('common'));
 app.use(helmet());
 app.use(cors({
@@ -37,10 +38,9 @@ app.use('/api/logs',logs);
 app.use(middlewares.notfound);
 app.use(middlewares.errorHandler);
 
+
+
 const port = process.env.PORT || 1337;
-
-
-app.listen(port, () =>{
-    console.log('listening at http://localhost:1337');
-
-}); 
+app.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}`);
+});
